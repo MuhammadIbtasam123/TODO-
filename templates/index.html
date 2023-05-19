@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App</title>
+    <!-- adding link to bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .nav-back {
+        background-color: #80c0c0 !important;
+      }
+      .btn-color{
+        background-color: #63ccc9 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- working on navbar -->
+    <nav class="navbar bg-body-tertiary nav-back nav-back">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-app-indicator"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z"
+            />
+            <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          </svg>
+          TODO-APP
+        </a>
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <!-- creating a form -->
+    <!-- making an endpoint for the form to route on apropriate url -->
+    <form class="mt-5" action="/" method="post">
+      <div class="container">
+      <div class="row mb-3">
+        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="title" id="title" />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="desc" class="col-sm-2 col-form-label"
+          >Description</label
+        >
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="desc" id="desc"/>
+        </div>
+      </div>
+
+        <div class="row mb-3">
+          <div class="col-sm-10 offset-sm-2"></div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-color">Add To Do </button>
+        <button type="submit" class="btn btn-primary btn-color">Show To Do </button>
+      </form>
+    </div>
+
+
+<!-- table shows to do list -->
+<div class="container">
+
+  <table class="table mt-5">
+    <h2 class="mt-5">TODO'S</h2>
+    {% if todos|length==0 %}
+    <div class="alert alert-info" role="alert">
+      No Todos to show. Add some todos now!
+    </div>
+    {% else %}
+      
+    <thead>
+      <tr>
+        <td>SNO</td>
+        <td>TITLE</td>
+        <td>DESCRIPTION</td>
+        <td>Action</td>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <!-- jinja 2 for loop -->
+      {% for todo in todos %}
+      <tr>
+        <th scope="col">{{loop.index}}</th> <!-- loop,index used to show serial number in table -->
+        <th scope="col">{{todo.title}}</th>
+        <th scope="col">{{todo.desc}}</th>
+        <th>
+          <a href="/delete/{{todo.sno}}" class="btn btn-danger btn-sm">Delete</a> <!-- delete send serail no to Delete end point. -->
+          <a href="/update/{{todo.sno}}" class="btn btn-warning btn-sm">Update</a> <!-- update send serail no to update end point. -->
+        </th>
+      </tr>
+      {% endfor %}
+    </tbody>
+    {% endif %}
+  </table>
+</div>
+  </body>
+  </html>
+  

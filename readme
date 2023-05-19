@@ -1,0 +1,63 @@
+<!-- create a virtual envoirnment -->
+
+pip install virtualenv (command)
+virtualenv env (command)
+Set-ExecutionPolicy unrestricted (A) in windows powershell (command)
+now envoirnment created now we have to activate the virtual envoirnment. env tab S tab act tab .ps1
+
+<!-- # making a to do app using flask
+
+
+
+<!-- now we are creating a database class -->
+
+a class contain what to store.
+which database to use.
+which fields to create
+which integer which string etc.
+a kind of schema.
+
+<!-- to install sql alchemy-->
+
+pip install flask-sqlalchemy
+
+<!-- iporting from flask -->
+
+from flask_sqlalchemy import SQLAlchemy
+
+<!-- using for mysql or sql lite from alchemy docuimetation -->
+<!-- here using sqllite -->
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
+Add with app.app_context(): above db = SQLAlchemy(app) like this:
+
+with app.app_context():
+db = SQLAlchemy(app)
+
+and when using the commands do this:
+
+python
+
+> > > from app import app, db
+> > > app.app_context().push()
+> > > db.create_all()
+
+This will create the database in a folder called instance. After that everything just works fine. :)
+
+# best practices:
+
+# (debug = true) means if an error occur it will display in the browser
+
+# to run the command in terminal use these commands
+
+# python main.py
+
+# flask --app main.py run
+
+you can add any file to static it can be a video image etc.
+
+Templates:
+index.html
+style.css
+etc -->
